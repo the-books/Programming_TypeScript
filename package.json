@@ -1,0 +1,21 @@
+{
+  "name": "programming_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "tsc --init",
+    "lint": "eslint .",
+    "build": "tsc",
+    "start": "node ./dist/ch0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "typescript": "^4.7.4"
+  }
+}
