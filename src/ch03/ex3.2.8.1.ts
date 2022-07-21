@@ -4,11 +4,20 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-let a: unknown = 30;
-let b = a === 123;
-let c = a + 10;
-if (typeof a === 'number') {
-  let d = a + 10;
-}
+let a = {
+  b: "x",
+}; // {b: string;}
+
+a.b; // string
+
+let b = {
+  c: {
+    d: "f",
+  },
+}; // {c: {d: string;}}
+
+let c: { b: number } = {
+  b: 12,
+};
 
 export {};

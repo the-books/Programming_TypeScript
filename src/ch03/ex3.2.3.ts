@@ -4,11 +4,12 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-let a: unknown = 30;
-let b = a === 123;
-let c = a + 10;
-if (typeof a === 'number') {
-  let d = a + 10;
-}
+let a = true; // boolean
+var b = false; // boolean
+const c = true; // true
+
+let d: boolean = true; // boolean
+let e: true = true; // true
+let f: true = false; // ts(2322)
 
 export {};
