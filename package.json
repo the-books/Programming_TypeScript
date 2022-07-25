@@ -7,7 +7,7 @@
     "init": "tsc --init",
     "lint": "eslint .",
     "build": "tsc",
-    "start": "node ./dist/ch02/ex2.4.0"
+    "start": "node ./dist/ch04/ex4.1.5.0"
   },
   "keywords": [],
   "author": "",
