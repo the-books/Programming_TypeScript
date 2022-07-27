@@ -6,28 +6,51 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-type CreateElement = {
-  (tag: "a"): HTMLAnchorElement;
-  (tag: "canvas"): HTMLCanvasElement;
-  (tag: "table"): HTMLTableElement;
-  (tag: string): HTMLElement;
+type ReservationTwoWay = {
+  F: string;
+  T: string;
+  D: string;
 };
 
-let createElement: CreateElement = (tag: string): HTMLElement => {
-  if (tag === "a") {
-    return new HTMLAnchorElement();
-  } else if (tag === "canvas") {
-    return new HTMLCanvasElement();
-  } else if (tag === "table"){
-    return new HTMLTableElement();
-  } else {
-    return new HTMLElement();
-  }
+type ReservationOneWay = {
+  F: string;
+  D: string;
+};
+
+type Reserve = {
+  /** 왕복 여행 예약 */
+  (from: Date, to: Date, destination: string): ReservationTwoWay;
+  /** 편도 여행 예약 */
+  (from: Date, destination: string, ): ReservationOneWay;
 }
 
-let tag: HTMLElement = createElement("a");
-tag = createElement("canvas");
-tag = createElement("table");
-tag = createElement("foo");
+let reserve: Reserve = (
+  from: Date,
+  toOrDestination: Date | string,
+  destination?: string,
+): ReservationTwoWay & ReservationOneWay => {
+  if (toOrDestination instanceof Date && destination !== undefined) {
+    /** 왕복 여행 예약 */
+    return {
+      F: from.toISOString(),
+      T: toOrDestination.toISOString(),
+      D: destination,
+    };
+  }
+
+    /** 편도 여행 예약 */
+    return {
+      F: from.toISOString(),
+      D: toOrDestination as string,
+    };
+
+}
+
+let rTwo = reserve(new Date("20220801"), new Date("20220812"), "Hawaii");
+console.log(rTwo);
+let rOne = reserve(new Date("20220901"), "Rome");
+console.log(rOne);
+rTwo = reserve(new Date("20220918"), new Date("20220922"), "Texas");
+console.log(rTwo);
 
 export {};

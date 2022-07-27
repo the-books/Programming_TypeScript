@@ -7,46 +7,44 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
 type Reservation = {
+  D: string;
   F: string;
   T?: string;
-  D: string;
 };
 
 type Reserve = {
   /** 왕복 여행 예약 */
-  (from: Date, to: Date, destination: string): Reservation;
+  (destination: string, from: Date, to: Date): Reservation;
   /** 편도 여행 예약 */
-  (from: Date, destination: string): Reservation;
+  (destination: string, from: Date): Reservation;
 }
 
 let reserve: Reserve = (
+  destination: string,
   from: Date,
-  toOrDestination: Date | string,
-  destination?: string,
+  to?: Date,
 ) => {
-  if (toOrDestination instanceof Date && destination !== undefined) {
+  if (to instanceof Date) {
     /** 왕복 여행 예약 */
     return {
-      F: from.toISOString(),
-      T: toOrDestination.toISOString(),
       D: destination,
+      F: from.toISOString(),
+      T: to.toISOString(),
     };
   } else {
     /** 편도 여행 예약 */
     return {
+      D: destination,
       F: from.toISOString(),
-      D: toOrDestination as string,
     };
   }
 }
 
-let r = reserve(new Date("20220801"), new Date("20220812"), "Hawaii");
+let r = reserve("Hawaii", new Date("20220801"), new Date("20220812"));
 console.log(r);
-r= reserve(new Date("20220901"), "Rome");
+r= reserve("Rome", new Date("20220901"));
 console.log(r);
-r= reserve(new Date("20220918"), new Date("20220922"), "Texas");
+r= reserve("Texas", new Date("20220918"), new Date("20220922"));
 console.log(r);
-
-reserve();
 
 export {};
