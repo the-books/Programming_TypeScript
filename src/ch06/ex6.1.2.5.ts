@@ -23,7 +23,7 @@ let existingUser: ExistngUser = {
   id: 123456,
   name: "I'm a User",
 };
-
+ 
 deleteUser(existingUser);
 console.log(existingUser.id);
 deleteUser(existingUser);
