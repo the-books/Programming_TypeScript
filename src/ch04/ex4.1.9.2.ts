@@ -6,51 +6,68 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-type ReservationTwoWay = {
-  F: string;
-  T: string;
-  D: string;
+/** 왕복
+ * from: 출발일자
+ * to: 귀성일자
+ * destination: 여행지
+ */
+type TwoWayOption = {
+  type: "TwoWay",
+  from: string;
+  to: string;
+  destination: string;
 };
 
-type ReservationOneWay = {
-  F: string;
-  D: string;
+type OneWayOption = {
+  type: "OneWay",
+  from: string;
+  destination: string;
+};
+
+type Reservation = {
+  f: string;
+  t: string;
+  d: string;
 };
 
 type Reserve = {
   /** 왕복 여행 예약 */
-  (from: Date, to: Date, destination: string): ReservationTwoWay;
+  (option: TwoWayOption): Reservation;
   /** 편도 여행 예약 */
-  (from: Date, destination: string, ): ReservationOneWay;
-}
+  (option: OneWayOption): Reservation;
+};
 
 let reserve: Reserve = (
-  from: Date,
-  toOrDestination: Date | string,
-  destination?: string,
-): ReservationTwoWay & ReservationOneWay => {
-  if (toOrDestination instanceof Date && destination !== undefined) {
+  option: TwoWayOption | OneWayOption
+) => {
+  if (option.type === "TwoWay") {
     /** 왕복 여행 예약 */
     return {
-      F: from.toISOString(),
-      T: toOrDestination.toISOString(),
-      D: destination,
+      f: option.from,
+      t: option.to,
+      d: option.destination,
     };
   }
-
-    /** 편도 여행 예약 */
-    return {
-      F: from.toISOString(),
-      D: toOrDestination as string,
-    };
-
+  /** 편도 여행 예약 */
+  return {
+    f: option.from,
+    t: "NONE",
+    d: option.destination,
+  };
 }
 
-let rTwo = reserve(new Date("20220801"), new Date("20220812"), "Hawaii");
+let rTwo = reserve({
+  type: "TwoWay",
+  from: "20220801",
+  to: "20220812",
+  destination: "Hawaii"
+});
 console.log(rTwo);
 let rOne = reserve(new Date("20220901"), "Rome");
 console.log(rOne);
 rTwo = reserve(new Date("20220918"), new Date("20220922"), "Texas");
 console.log(rTwo);
+
+reserve()
 
 export {};

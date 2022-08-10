@@ -6,31 +6,24 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-type SuperTypeS = number | string | undefined;
-type SuperTypeA = number | undefined;
-type SuperTypeB = number | string;
+type SuperType = number | undefined;
 type SubType = number;
 
-let superS: SuperTypeS = 111;
-let superA: SuperTypeA = 222;
-let superB: SuperTypeB = "333";
-let sub: SubType = 444;
+// SubTcype <: SuperType
+let sup: SuperType = undefined;
+let sub: SubType = 222;
 
-// SubType <: SuperTypeA
-// SubType <: SuperTypeB
-// superA = sub;
-// superB = sub;
+sup = sub;
 
-// SuperTypeA <: SuperTypeS
-// SuperTypeB <: SuperTypeS
-// superS = superA;
-// superS = superB;
+function dd(s: SuperType) {
+  console.log(typeof s);
+}
 
-// SubType <: SuperTypeS
-// superS = sub;
-
-superA = superS;
-superB = superS;
-
+dd(sup);
+dd(sub);
+dd(33);
+dd(undefined);
+// Error
+// dd("none");
 
 export {};

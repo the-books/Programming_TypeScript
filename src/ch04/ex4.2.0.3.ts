@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-var */
@@ -9,14 +8,14 @@
 
 type Filter = {
   // (array: unknown[], f: unknown): unknown[];
-  (array: number[], f: (item: number) => boolean): number[];
-  (array: string[], f: (item: string) => boolean): string[];
+  // (array: number[], f: (item: number) => boolean): number[];
+  // (array: string[], f: (item: string) => boolean): string[];
+  // (array: object[], f: (item: object) => boolean): object[];
+  <T>(array: T[], f: (item: T) => boolean): T[];
 };
 
-let filter: Filter = (
-  array: any[],
-  f: (item: any) => boolean,
-): any[] => {
+
+let filter: Filter = (array, f) => {
   let result = [];
   for (let i = 0; i < array.length; i++) {
     let item = array[i];
@@ -30,5 +29,12 @@ let filter: Filter = (
 filter([1, 2, 3, 5, 5], _ => _ > 2);
 
 filter(["a", "b", "c", "d"], _ => _ !== "b");
+
+let names = [
+  { firstName: "Beth" },
+  { firstName: "John" },
+  { firstName: "Sue" },
+];
+filter(names, _ => _.firstName.startsWith("B"));
 
 export {};

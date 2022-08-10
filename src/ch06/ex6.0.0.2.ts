@@ -7,22 +7,45 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
 type SuperType = {
-  id: number | string;
+  name: string;
 };
 type SubType = {
-  id: string;
+  id: number;
+  name: string;
 };
 
 // SubType <: SuperType
 let sup: SuperType = {
-  id: "123",
+  name: "John",
 };
 let sub: SubType = {
-  id: "444",
+  id: 123,
+  name: "Paul",
 };
 
 sup = sub;
 // Error
 // sub = sup;
+
+// let sup1: SubType = {
+//   name: "Kevin",
+// };
+
+// sup = {
+//   id: 1122,
+//   name: "Kevin",
+// }
+
+// function greeting(person: SuperType) {
+//   console.log("greeting");
+// }
+// greeting(sup);
+// greeting(sub);
+
+// function greeting2(person: SubType) {
+//   console.log("greeting2");
+// }
+// greeting2(sup);
+// greeting2(sub);
 
 export {};

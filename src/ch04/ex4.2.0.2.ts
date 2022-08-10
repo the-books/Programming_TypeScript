@@ -11,6 +11,7 @@ type Filter = {
   // (array: unknown[], f: unknown): unknown[];
   (array: number[], f: (item: number) => boolean): number[];
   (array: string[], f: (item: string) => boolean): string[];
+  (array: object[], f: (item: object) => boolean): object[];
 };
 
 let filter: Filter = (
@@ -30,5 +31,12 @@ let filter: Filter = (
 filter([1, 2, 3, 5, 5], _ => _ > 2);
 
 filter(["a", "b", "c", "d"], _ => _ !== "b");
+
+let names = [
+  { firstName: "Beth" },
+  { firstName: "John" },
+  { firstName: "Sue" },
+];
+filter(names, _ => _.firstName.startsWith("B"));
 
 export {};
