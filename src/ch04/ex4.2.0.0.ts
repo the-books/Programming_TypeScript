@@ -9,7 +9,7 @@
 type Filter = {
   // (array: unknown[], f: unknown): unknown[];
   (array: number[], f: (item: number) => boolean): number[];
-}
+};
 
 let filter: Filter = (array, f) => {
   let result = [];
@@ -20,6 +20,8 @@ let filter: Filter = (array, f) => {
     }
   }
   return result;
-}
+};
+
+filter([1, 2, 3, 4, 5], _ => _ > 2);
 
 export {};

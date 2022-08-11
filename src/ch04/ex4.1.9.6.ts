@@ -23,7 +23,7 @@ let myLog: Log = (
     return message.toString();
   }
   return message;
-}
+};
 
-myLog()
+myLog();
 export {};

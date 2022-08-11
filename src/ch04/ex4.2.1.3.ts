@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-var */
@@ -7,16 +6,11 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-type Filter = {
-  // (array: unknown[], f: unknown): unknown[];
-  (array: number[], f: (item: number) => boolean): number[];
-  (array: string[], f: (item: string) => boolean): string[];
-};
+type Filter<T> = {
+  (array: T[], f: (item: T) => boolean): T[];
+}
 
-let filter: Filter = (
-  array: any[],
-  f: (item: any) => boolean,
-): any[] => {
+let filter: Filter<number> = (array, f) => {
   let result = [];
   for (let i = 0; i < array.length; i++) {
     let item = array[i];
@@ -27,8 +21,22 @@ let filter: Filter = (
   return result;
 };
 
-filter([1, 2, 3, 5, 5], _ => _ > 2);
+type StringFilter = Filter<string>;
 
-filter(["a", "b", "c", "d"], _ => _ !== "b");
+filter([1, 2, 3, 4, 5], _ => _ > 2);
+// filter(["a", "b", "c", "d"], _ => _ != "b");
+
+let strFilter : StringFilter = (array, f) => {
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    let item = array[i];
+    if (f(item)) {
+      result.push(item);
+    }
+  }
+  return result;
+};
+
+strFilter(["a", "b", "c", "d"], _ => _ != "b");
 
 export {};

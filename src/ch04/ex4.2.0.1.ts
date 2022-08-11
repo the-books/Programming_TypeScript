@@ -13,10 +13,7 @@ type Filter = {
   (array: string[], f: (item: string) => boolean): string[];
 };
 
-let filter: Filter = (
-  array: any[],
-  f: (item: any) => boolean,
-): any[] => {
+let filter: Filter = (array, f) => {
   let result = [];
   for (let i = 0; i < array.length; i++) {
     let item = array[i];
@@ -25,7 +22,7 @@ let filter: Filter = (
     }
   }
   return result;
-}
+};
 
 filter([1, 2, 3, 5, 5], _ => _ > 2);
 

@@ -23,11 +23,4 @@ let filter: Filter<string> = (array, f) => {
 
 filter(["a", "b", "c", "d"], _ => _ !== "b");
 
-// let names = [
-//   { firstName: "Beth" },
-//   { firstName: "John" },
-//   { firstName: "Sue" },
-// ];
-// filter(names, _ => _.firstName.startsWith("B"));
-
 export {};

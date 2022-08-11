@@ -8,28 +8,22 @@
 
 type Filter = {
   <T>(array: T[], f: (item: T) => boolean): T[];
-}
+};
 
 let filter: Filter = (array, f) => {
   let result = [];
+
   for (let i = 0; i < array.length; i++) {
     let item = array[i];
     if (f(item)) {
       result.push(item);
     }
   }
+
   return result;
-}
+};
 
-filter([1, 2, 3, 5, 5], _ => _ > 2);
-
-filter(["a", "b", "c", "d"], _ => _ !== "b");
-
-let names = [
-  { firstName: "Beth" },
-  { firstName: "John" },
-  { firstName: "Sue" },
-];
-filter(names, _ => _.firstName.startsWith("B"));
+filter([1, 2, 3, 4, 5], _ => _ > 3);
+filter(["a", "b", "c", "d"], _ => _ != "b");
 
 export {};

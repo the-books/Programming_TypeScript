@@ -17,7 +17,7 @@ type Reserve = {
   (from: Date, to: Date, destination: string): Reservation;
   /** 편도 여행 예약 */
   (from: Date, destination: string): Reservation;
-}
+};
 
 let reserve: Reserve = (
   from: Date,
@@ -38,7 +38,7 @@ let reserve: Reserve = (
       D: toOrDestination as string,
     };
   }
-}
+};
 
 let r = reserve(new Date("20220801"), new Date("20220812"), "Hawaii");
 console.log(r);

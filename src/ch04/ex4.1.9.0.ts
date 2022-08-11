@@ -12,6 +12,6 @@ type ExLog = (message: string, userId: string) => void;
 // 전체 호출 시그니처
 type Log = {
   (message: string, userId?: string): void;
-}
+};
 
 export {};
