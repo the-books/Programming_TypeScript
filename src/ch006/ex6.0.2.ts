@@ -6,30 +6,23 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-// C <: B <: A
-type C = number;
-type B = number | boolean;
-type A = number | boolean | string;
-
-let c: C = 1;
-let b: B = true;
-let a: A = "Hello";
-
-let z: C = c;
-z = b;
-z = a;
-
-let y: B = c;
-y = b;
-y = a;
-
-let x: A = c;
-x = b;
-x = a;
+// A <: B <: C
+type A = {
+  id: number;
+};
+type B = {
+  id: number | boolean;
+};
+type C = {
+  id: number | boolean | string;
+};
 
 
+type FnA = (b: B) => A;
+type FnB = (a: A) => B;
 
-
-
+let a: FnB = (b: B) => {
+  return { id: false };
+};
 
 export {};
