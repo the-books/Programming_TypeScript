@@ -11,13 +11,13 @@ type A = number;
 type B = number | boolean;
 type C = number | boolean | string;
 
-type FnA = (a: A) => A;
+type FnA = (c: C) => A;
 type FnB = (b: B) => B;
-type FnC = (c: C) => C;
+type FnC = (a: A) => C;
 
-let fnA: FnA = (a: A) => 1;
+let fnA: FnA = (c: C) => 1;
 let fnB: FnB = (b: B) => true;
-let fnC: FnC = (c: C) => "Hello"
+let fnC: FnC = (a: A) => "Hello"
 
 let x: FnA = fnA;
 x = fnB;

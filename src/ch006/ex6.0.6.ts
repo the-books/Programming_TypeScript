@@ -11,13 +11,14 @@ type A = number;
 type B = number | boolean;
 type C = number | boolean | string;
 
-type FnA = (a: A) => A;
-type FnB = (b: B) => B;
-type FnC = (c: C) => C;
+// FnC <: FnB <: FnA
+type FnA = (a: A) => void;
+type FnB = (b: B) => void;
+type FnC = (c: C) => void;
 
-let fnA: FnA = (a: A) => 1;
-let fnB: FnB = (b: B) => true;
-let fnC: FnC = (c: C) => "Hello"
+let fnA: FnA = (a: A) => undefined;
+let fnB: FnB = (b: B) => undefined;
+let fnC: FnC = (c: C) => undefined;
 
 let x: FnA = fnA;
 x = fnB;

@@ -8,32 +8,33 @@
 
 // A <: B <: C
 type A = {
-  a: number;
-  b: number;
-  c: number;
+  id: number;
 };
 type B = {
-  b: number;
-  c: number;
+  id: number | boolean;
 };
 type C = {
-  c: number;
+  id: number | boolean | string;
 };
 
-let a: A = { c: 1, b: 2, a: 3 };
-let b: B = { c: 1, b: 2 };
-let c: C = { c: 1 };
+type FnA = (c: C) => A;
+type FnB = (b: B) => B;
+type FnC = (a: A) => C;
 
-let x: A = a;
-x = b;
-x = c;
+let fnA: FnA = (c: C) => ({ id: 1 });
+let fnB: FnB = (b: B) => ({ id: true });
+let fnC: FnC = (a: A) => ({ id: "Hello" });
 
-let y: B = a;
-y = b;
-y = c;
+let x: FnA = fnA;
+x = fnB;
+x = fnC;
 
-let z: C = a;
-z = b;
-z = c;
+let y: FnB = fnA;
+y = fnB;
+y = fnC;
+
+let z: FnC = fnA;
+z = fnB;
+z = fnC;
 
 export {};
