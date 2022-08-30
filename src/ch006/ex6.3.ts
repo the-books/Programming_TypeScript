@@ -6,32 +6,27 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-// A <: B <: C
-type C = {
-  c: number;
+type A = number;
+type B = number | string;
+type C = number | string | boolean;
+type D = number | string | boolean | undefined;
+
+type FnB = (b: B) => void;
+
+
+let chirp: FnB = (b) => {
+  console.log();
 };
-type B = C & {
-  b: number;
-};
-type A = B & {
-  a: number;
-};
 
+let a: A = 10;
+let b: B = "Hi";
+let c: C = false;
+let d: D = undefined;
 
-let a: A = { c: 1, b: 2, a: 3 };
-let b: B = { c: 1, b: 2 };
-let c: C = { c: 1 };
+chirp(a);
+chirp(b);
+chirp(c);
+chirp(d);
 
-let x: A = a;
-x = b;
-x = c;
-
-let y: B = a;
-y = b;
-y = c;
-
-let z: C = a;
-z = b;
-z = c;
 
 export {};
