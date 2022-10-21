@@ -6,12 +6,12 @@
 /* eslint-disable @typescript-eslint/prefer-as-const */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-type ISOString = {
-  EN: string;
-  KO: string;
-  JP: string;
-  FU: string;
-};
+// type ISOString = {
+//   EN: string;
+//   KO: string;
+//   JP: string;
+//   FU: string;
+// };
 type Language = {
   KO: string;
   JP: string;
@@ -25,7 +25,7 @@ type Group = {
   ingredients: string[];
   categories: {
     categoryType: 'Junmai Daiginjo' | 'Junmai Ginjo' | 'Tokubetsu Junmai' | 'Junmai' | 'Daiginjo' | 'Ginjo' | 'Tokubetsu Honjozo' | 'Honjozo' | 'Futsushu';
-    name: Pick<ISOString, "KO" | "JP" | "FU">;
+    name: Language;
     description: string;
     price: [number, number?]
   }[];
@@ -36,20 +36,20 @@ type CategoryType = Category["categoryType"];
 
 type Brand = {
   brandType: "kubota" | "koshi_no_kanbai" | "hakkaisan" | "dassai";
-  brandName: Pick<ISOString, "KO" | "JP" | "FU">;
-  brewery: Pick<ISOString, "KO" | "JP">;
-  location: Pick<ISOString, "KO" | "JP">;
+  brandName: Language;
+  brewery: Language;
+  location: Language;
   feature: string;
-  links: Partial<ISOString>;
+  links: Language;
 };
 type BrandType = Brand["brandType"];
 
 type Sake = {
   brand: BrandType;
   category: CategoryType;
-  productName: Pick<ISOString, "KO" | "JP" | "FU">;
+  productName: Language;
   description: string;
-  rice: Pick<ISOString, "KO" | "JP">;
+  rice: Language;
   ricePolishingRate: number;
   alcoholByVolume: number;
   sakeMeterValue: number;
